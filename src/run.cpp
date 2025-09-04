@@ -1,8 +1,9 @@
+#include<iostream>
+
 using std::string;
 using std::cin;
 
 int main(){
-
 	for(string s; s="";){
 		if(cin >> s){
 			//game 
@@ -10,5 +11,4 @@ int main(){
 			break;
 		}
 	}
-
 }
