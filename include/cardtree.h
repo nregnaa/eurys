@@ -1,46 +1,78 @@
 #include<iostream>
 
-#include"cards.h"
+#include"card.h"
 
 class Cardtree{
 	public:
+		Cardtree() : root(NULL){}
 
-		Cardtree() : head = NULL{}
+		bool addCards(float, Card[2], Node*&);
 
-		bool addCards(float val, Card[2] cards){
-			if(head == NULL){
-				head = Node(NULL, NULL, val, cards);
-			}
+		bool balance();
 
-			for(Node ptr = head;;){
-				if(val > ptr.val){
-					if(ptr.right == NULL){
-						ptr.right = Node(NULL, NULL, val, cards);
-						break;
-					}else{
-						ptr = ptr.right;
-					}
-				}else if(val <ptr.val){
-					if(ptr.left == NULL){
-						ptr.left = Node(NULL, NULL, val, cards);
-						break;
-					}else{
-						ptr = ptr.left;
-					}
-				}
-			}
-		}
+		bool shiftRight();
+
+		bool shiftLeft();
 
 	private:
 		struct Node{
-			Node(Node left, Node right, float val, Card[2] cards) : 
-			this->left = left, this->right = right, 
-			this->val = val, this->cards = cards{}
+			Node(Node* left, Node* right, float val, Card[2] cards) : 
+			left(left), right(right), val(val), cards(cards){}
 
-			Node left, right;
+			int height();
+			void setHeight();
+
+			Node* left, right;
 			float val;
 			Card[2] cards;
+			int height;
 		};
 	
-		Node head;
+		Node* root;
 };
+
+bool Cardtree::addCards(float val, Card[2] cards, Node*& ptr = root){
+	if(ptr == NULL){
+		*root = Node(NULL, NULL, val, cards);
+	}else if(val > ptr.val){
+		addCards(val, cards, ptr.right);
+	}else(val < ptr.val){
+		addCards(val, cards, ptr.left);
+	}
+}
+
+bool Cardtree::balance(){}
+
+bool Cardtree::shiftRight(Node*& arg){
+	if(Node* root = arg->left){
+		arg->left = root->right;
+		root->right = arg;
+		arg = root;
+		return true;
+	}else{
+		return false;
+	}
+}
+
+bool Cardtree::shiftLeft(Node*& arg){
+	if(Node* root = arg->right){
+		arg->right = root->left;
+		root->left = arg;
+		arg = root;
+		return true;
+	}else{
+		return false;
+	}
+}
+
+int Cardtree::Node::height(){
+	if(this == NULL){
+		return -1;
+	}else{
+		return height;
+	}
+}
+
+void Cardtree::Node::setHeight(){
+	
+}
