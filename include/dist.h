@@ -1,12 +1,11 @@
 #pragma once
 
-#include<iostream>
-#include<cstdlib>
-#include<ctime>
-
+#include"rv.h"
 #include"card.h"
+#include"poker.h"
 
-float bootstrap(){
-	srand(time(NULL));
-	return float(rand()%100);
+using std::vector;
+
+int[52] dist(int n){
+	
 }

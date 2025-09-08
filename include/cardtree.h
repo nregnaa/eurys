@@ -1,5 +1,3 @@
-#include<iostream>
-
 #include"card.h"
 
 class Cardtree{
@@ -49,9 +47,8 @@ bool Cardtree::shiftRight(Node*& arg){
 		root->right = arg;
 		arg = root;
 		return true;
-	}else{
-		return false;
 	}
+	return false;
 }
 
 bool Cardtree::shiftLeft(Node*& arg){
@@ -60,9 +57,8 @@ bool Cardtree::shiftLeft(Node*& arg){
 		root->left = arg;
 		arg = root;
 		return true;
-	}else{
-		return false;
 	}
+	return false;
 }
 
 int Cardtree::Node::height(){
